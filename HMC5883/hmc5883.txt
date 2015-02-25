@@ -1,0 +1,13 @@
+﻿HMC5883 digital compass 
+HMC5883核心芯片是honneywell的5883,I2C接口。
+
+物理连接：
+5v，i2c接beaglebone i2c_2的scl 和SDA。
+
+软件：
+当用angstrom时，i2c-1是屏蔽的，只好改用debian。
+在debian中，i2c-1接口对应的就是beaglebone的i2c_2物理接口。
+Sudo apt-get install i2c-tools
+i2cdetect -l可显示系统上所有的i2c设备。
+i2cdetect -y -r 1    将显示出i2c-1所有的地址设备，如果该地址物理连接了i2c slave，那么对应地址将显示出地址。HMC5883的地址是1e 
+i2cdump -y 1 0x1e    将显示出地址为1e的这个i2c设备上的所有register 的信息。
