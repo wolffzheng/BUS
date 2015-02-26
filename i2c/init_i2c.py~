@@ -1,0 +1,16 @@
+import smbus
+import time
+
+bus=smbus.SMBus(2)
+address=0x1e
+
+def read_register(addr):
+
+	global bus
+	global address
+	data=bus.read_byte_data(address,addr)
+	print data
+
+for i in range(0,30):
+	print i,':',
+	read_register(i)
